@@ -1,9 +1,10 @@
+<html>
 <head>
     <script>
         function main() {
             // mapjes
-            var getal, aantal, teller, teller2, tussenmap, i, gekozengetal, plek, start, eind, midden;
-            var antwoord;
+            var getal, aantal, start, eind, midden;
+            var gekozengetal, plek;
             var reeks = new Array(50);
 
             for (aantal = 0; aantal < 50; aantal++) {
@@ -19,9 +20,8 @@
                 return a - b;
             });
 
-            active(reeks);
             window.alert("Welk getal zoek je? kies 0-100.");
-            gekozengetal = Number(window.prompt('Enter a value for gekozengetal'));
+            gekozengetal = parseInt(window.prompt('Enter a value for gekozengetal'));
 
             // pak de hele (50 nummers) reeks
             start = 0;
@@ -33,6 +33,7 @@
                 midden = Math.floor((start + eind) / 2);
                 if (gekozengetal == reeks[midden]) {
                     gevonden = true;
+                    plek = midden + 1;
                     break;
                 } else {
                     if (gekozengetal > reeks[midden]) {
@@ -42,7 +43,7 @@
                     }
                 }
             }
-            plek = midden + 1;
+
             if (gevonden) {
                 window.alert("Nummer " + gekozengetal + " staat erin op plek " + plek);
             } else {

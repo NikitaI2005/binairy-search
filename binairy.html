@@ -1,58 +1,66 @@
 <html>
-<head>
-    <script>
-        function main() {
-            // mapjes
-            var getal, aantal, start, eind, midden;
-            var gekozengetal, plek;
-            var reeks = new Array(50);
+    <body>
+        <script>
+            function main() {
+    // mapjes
+    var getal, aantal, teller, teller2, tussenmap, i, gekozengetal, plek, start, eind, midden, middelstegetal;
+    var antwoord;
+    var reeks = newArray(50);
 
-            for (aantal = 0; aantal < 50; aantal++) {
-                // Computer kiest een getal
-                getal = Math.floor(Math.random() * 100);
+    for (aantal = 0; aantal <= 49; aantal++) {
 
-                // Gekozen getal in de mapjes
-                reeks[aantal] = getal;
-            }
+        // Computer kiest een getal
+        getal = Math.floor(Math.random() * 99);
 
-            // Sorteer de reeks
-            reeks.sort(function(a, b) {
-                return a - b;
-            });
+        // Gekozen getal in de mapjes
+        reeks[aantal] = getal;
+    }
+    for (teller2 = 1; teller2 <= aantal; teller2++) {
+        for (teller = 0; teller <= aantal - 2; teller++) {
+            if (reeks[teller] > reeks[teller + 1]) {
 
-            window.alert("Welk getal zoek je? kies 0-100.");
-            gekozengetal = parseInt(window.prompt('Enter a value for gekozengetal'));
-
-            // pak de hele (50 nummers) reeks
-            start = 0;
-            eind = reeks.length - 1;
-            var gevonden = false;
-
-            while (start <= eind) {
-                // bepaal het midden.
-                midden = Math.floor((start + eind) / 2);
-                if (gekozengetal == reeks[midden]) {
-                    gevonden = true;
-                    plek = midden + 1;
-                    break;
-                } else {
-                    if (gekozengetal > reeks[midden]) {
-                        start = midden + 1;
-                    } else {
-                        eind = midden - 1;
-                    }
-                }
-            }
-
-            if (gevonden) {
-                window.alert("Nummer " + gekozengetal + " staat erin op plek " + plek);
-            } else {
-                window.alert(gekozengetal + " staat er niet in.");
+                // getallen omdraaien als 1e getal groter is dan 2e getal.
+                tussenmap = reeks[teller];
+                reeks[teller] = reeks[teller + 1];
+                reeks[teller + 1] = tussenmap;
             }
         }
-    </script>
-</head>
-<body>
-    <button onclick="main()">Start</button>
-</body>
+    }
+    window.alert("Welk getal zoek je? " + "kies 0-100.");
+    gekozengetal = Number(window.prompt('Enter a value for gekozengetal'));
+
+    // pak de hele (50 nummers) reeks
+    start = 0;
+    eind = reeks.length;
+    var gevonden;
+
+    gevonden = false;
+    while (start <= eind) {
+
+        // bepaal het midden.
+        midden = (double) (start + eind) / 2;
+        if (gekozengetal == reeks[midden]) {
+            start = eind + 1;
+            gevonden = true;
+        } else {
+            if (gekozengetal > reeks[midden]) {
+                start = midden + 1;
+            } else {
+                eind = midden - 1;
+            }
+        }
+    }
+    plek = midden + 1;
+    if (gevonden) {
+        window.alert("Nummer " + gekozengetal + " staat erin op plek " + plek);
+    } else {
+        window.alert(gekozengetal.ToString() + " staat er niet in.");
+    }
+}
+
+function func_return() {
+}
+
+        </script>
+    </body>
 </html>
